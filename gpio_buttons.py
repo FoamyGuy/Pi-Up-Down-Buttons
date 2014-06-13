@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import uinput
 import os
+import atexit
 
 os.system("sudo modprobe uinput")
 
@@ -29,7 +30,8 @@ def btn27(channel):
 def btn18(channel):
   device.emit_click(uinput.KEY_ENTER)
 
-
+def cleanup():
+  GPIO.cleanup()
 
 events = ([uinput.KEY_ENTER, uinput.KEY_UP, uinput.KEY_DOWN] )
 device = uinput.Device(events)
@@ -39,8 +41,10 @@ GPIO.add_event_detect(22, GPIO.RISING, callback=btn22, bouncetime=600)
 GPIO.add_event_detect(27, GPIO.RISING, callback=btn27, bouncetime=600)
 GPIO.add_event_detect(18, GPIO.RISING, callback=btn18, bouncetime=600)
 
-
+atexit.register(cleanup)
 while True:
   if(1 == 0):
     print("The universe is broken")
-GPIO.cleanup()
+
+
+
