@@ -2,7 +2,7 @@ Pi-Up-Down-Buttons
 ==================
 
 **Requirements:**
-python-uinput
+* python-uinput
 
 **To get requirements:**
 
@@ -10,6 +10,12 @@ python-uinput
 
 **To launch the app:**
 
-    $ sudo modprobe uinput
     $ sudo python gpio_buttons.py
+
+**Optional**
+
+To launch it automatically in the background add this to .profile:
+
+    # Enable gpio buttons for up/down and enter
+    sudo python gpio_buttons.py &
 
